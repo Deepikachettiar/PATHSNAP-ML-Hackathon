@@ -2,9 +2,8 @@
 Prediction pipeline used by POST /predict.
 
 Two engines:
-  * RealEngine     - chains the teammates' modules (page 10 contract):
+  * RealEngine     - chains the integrated teammate modules:
                        data_prep.candidates.generate -> models.scorer.score -> decoder.viterbi.decode
-                     ADAPT the three call sites below to their actual signatures.
   * ScaffoldEngine - nearest-road snapping (distance only). Lets you build and test the API/UI before
                      the real model exists. Responses carry engine="scaffold" and the UI shows a warning.
                      Do NOT report scaffold numbers as model results.
@@ -130,13 +129,12 @@ class RealEngine:
     def __init__(self, cfg: dict):
         # Import lazily so a missing teammate module gives a clear message instead of crashing the server.
         self.generate = importlib.import_module("data_prep.candidates").generate
-        self.score = importlib.import_module("models.scorer").score
+        self.scorer = importlib.import_module("models.scorer").Scorer(cfg)
         self.decode = importlib.import_module("decoder.viterbi").decode
 
     def run(self, inputs: dict, graph: TripGraph) -> dict:
-        # TODO(adapt): match the actual signatures agreed on page 10 of the guide.
         cands = self.generate(inputs["track"], graph)
-        scores = self.score(cands)
+        scores = self.scorer.score(cands)
         out = self.decode(inputs["track"], cands, graph, scores)
         # Expected keys: points (list of dicts like the scaffold), breaks, route_segments (lon,lat lists)
         return out
@@ -155,6 +153,7 @@ class Predictor:
         self.engine = self._make_engine(cfg)
         self._graphs: "OrderedDict[str, tuple]" = OrderedDict()
         self._cache_size = cache_size
+        self._decoded = OrderedDict()
 
     @staticmethod
     def _make_engine(cfg):
@@ -168,7 +167,7 @@ class Predictor:
         return ScaffoldEngine(cfg)
 
     def _graph(self, root, trip_id):
-        key = trip_id
+        key = (root, trip_id)
         if key in self._graphs:
             self._graphs.move_to_end(key)
             return self._graphs[key]
@@ -195,7 +194,13 @@ class Predictor:
     def predict(self, root: str, trip_id: str) -> dict:
         t0 = time.perf_counter()
         inputs, graph = self._graph(root, trip_id)
-        out = self.engine.run(inputs, graph)
+        key = (root, trip_id)
+        if key not in self._decoded:
+            self._decoded[key] = self.engine.run(inputs, graph)
+            if len(self._decoded) > self._cache_size:
+                self._decoded.popitem(last=False)
+        self._decoded.move_to_end(key)
+        out = self._decoded[key]
         pts = out["points"]
         return {
             "trip_id": trip_id,
@@ -206,5 +211,7 @@ class Predictor:
             "breaks": out["breaks"],
             "route_segments": out["route_segments"],
             "road_context": self.road_context(inputs, graph),
+            "replay": out.get("replay", []),
+            "replay_roads": out.get("replay_roads", {}),
             "runtime_ms": round((time.perf_counter() - t0) * 1000, 1),
         }

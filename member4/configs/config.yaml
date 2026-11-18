@@ -1,12 +1,13 @@
 # Edit this file, or override with environment variables (shown in comments).
 mode: dev                  # dev | final            (env: PATHSNAP_MODE)
-model_version: "scaffold-0"  # replace with Member 2's model version string
-engine: auto               # auto | scaffold | real (env: PATHSNAP_ENGINE)
+model_version: "extra_trees-member3-v1"
+model_path: "models/extra_trees.joblib"
+engine: real               # auto | scaffold | real (env: PATHSNAP_ENGINE)
                            # auto = use the team's real modules if importable, else scaffold
 
 data_roots:
   # Folder containing one sub-folder per trip: <root>/<trip_id>/<trip_id>.{track,nodes,arcs,route}
-  dev:   "/Users/manishrangach_2007/Downloads/Student folder/student_test"     # env: PATHSNAP_DEV_ROOT
+  dev:   "../Student folder (2)/student_test"     # env: PATHSNAP_DEV_ROOT
   final: ""                                     # env: PATHSNAP_FINAL_ROOT  (set at the event)
 
 server:

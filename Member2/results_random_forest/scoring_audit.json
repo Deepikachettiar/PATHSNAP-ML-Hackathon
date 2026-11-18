@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "candidate_rows": 130923,
+  "gps_points": 19160,
+  "keys_match_input": true,
+  "probabilities_normalised": true,
+  "cv_folds": 5
+}

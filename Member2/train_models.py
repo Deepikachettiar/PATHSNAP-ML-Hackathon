@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-PathSnap - Member 2: five-model comparison on Member 1's candidate tables.
+PathSnap - Member 2: six-model comparison on Member 1's candidate tables.
 
 What this script does
   1. Loads Member 1's handoff files (train / student_test candidates, fold ids, schema).
-  2. For each of five models runs 5-fold CV GROUPED BY TRIP (folds come from Member 1's
+  2. For each model runs 5-fold CV GROUPED BY TRIP (folds come from Member 1's
      trip_folds / fold_id column, seed 42). Preprocessing (imputer / scaler) lives inside
      each pipeline, so it is fitted on the training folds only.
   3. Refits each model on all 80 train trips and evaluates on the 10 student_test trips.
@@ -36,7 +36,7 @@ import joblib
 import numpy as np
 import pandas as pd
 import sklearn
-from sklearn.ensemble import ExtraTreesClassifier, HistGradientBoostingClassifier
+from sklearn.ensemble import ExtraTreesClassifier, HistGradientBoostingClassifier, RandomForestClassifier
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score, log_loss, precision_score, recall_score
@@ -72,6 +72,12 @@ def build_models(seed):
             imp(), ExtraTreesClassifier(n_estimators=100, max_depth=16, min_samples_leaf=20,
                                         n_jobs=-1, random_state=seed)),
             dict(n_estimators=100, max_depth=16, min_samples_leaf=20)),
+        "random_forest": ("Bagged tree ensemble", make_pipeline(
+            imp(), RandomForestClassifier(
+                n_estimators=100, max_depth=16, min_samples_leaf=20,
+                max_features="sqrt", bootstrap=True, n_jobs=-1, random_state=seed)),
+            dict(n_estimators=100, max_depth=16, min_samples_leaf=20,
+                 max_features="sqrt", bootstrap=True)),
         "hist_gb": ("Boosting", HistGradientBoostingClassifier(
             learning_rate=0.1, max_iter=200, max_leaf_nodes=31, random_state=seed),
             dict(learning_rate=0.1, max_iter=200, max_leaf_nodes=31)),

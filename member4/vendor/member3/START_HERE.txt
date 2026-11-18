@@ -1,0 +1,14 @@
+FINAL RUN: Extract All and double-click RUN_FINAL.cmd. It regenerates results and opens Member3_Dashboard.html. Use the trip selector and evidence slider.
+OPEN Member3_Dashboard.html for the automatically loaded replay and both per-trip comparison graphs. Run py -3 final.py to regenerate everything.
+
+WINDOWS FINAL REVIEW | MEMBER 3
+Extract the entire ZIP. Open the extracted folder containing final.py. Type cmd in the Explorer address bar and press Enter.
+Run: py -3 final.py
+If your Python installation uses the python command: python final.py
+Python 3.9+ is sufficient. All ten student trips, candidates, scores and derived labels are bundled. No pip installation or internet connection is needed for final.py.
+
+Every point has scores. Chain restarts still mark impossible transitions or time gaps and should remain visible.
+Member 2 supplied original Extra Trees probabilities for 13,189 points. For the remaining 5,971, prepare.py rebuilds 15 features with a local metre approximation and applies the same saved forest. These reconstructed features can differ from Member 1's original implementation. The reference for point accuracy is a new monotone alignment of GPS observations to the ordered .route using minimum total projection distance. These approximate labels differ from an official point-level answer key. All 19,160 points are counted. Run scoring and decoding independently of reference labels. Supplied scores are for these ten student trips. Member 4 can import decode for live inference with new per-trip candidates and model scores.
+Optional reproducibility only: prepare.py accepts the directory containing original member2.zip and zipped candidates.csv. Regeneration uses pandas, numpy, joblib and scikit-learn; use the model producer's versions from run_config.json when available. It reads the included raw trip files. The bundled tables were generated using sklearn 1.8.0 to read Member 2's 1.9.1 artifact. The normal final.py run uses only Python standard libraries.
+
+Replay now selects the first ambiguous point whose assignment changes within the replay window, if one exists. Otherwise it shows a stable example. This is a selected demo, not a measure of how often changes occur. For trip 00000000 move from observation 40 to 41 to see the road ID switch. Use the JSON bundled in this edition.

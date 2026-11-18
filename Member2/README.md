@@ -83,3 +83,19 @@ The input candidate file must contain the model's feature columns plus `trip_id`
 ## GitHub guidance
 
 Upload the **extracted project folder contents** to your repository rather than relying only on the ZIP. The largest saved model is Extra Trees (~27 MB), which is below GitHub's 100 MB individual-file limit. The complete archive is large (~107 MB); check the repository's total size and consider Git LFS or excluding bulky score files if your team does not need to version them. Keep the scripts, README, config, fold results, and selected model artifacts available for review.
+
+## Sixth classifier and preserved experiment inputs
+
+Chengapa K S added Random Forest using the same 15 features and five trip folds as the original five-model experiment. Its mean grouped-CV Top-1 is 84.0655%, ranking second behind Extra Trees at 84.2481%. The serving application selects Extra Trees under the recorded CV rule. Labels are approximate offline route alignments.
+
+`results_random_forest/` contains the sixth model, score exports, fold metrics and six-model comparison. `data_snapshot/` contains the earlier handoff used to reproduce the comparison, with hashes in `snapshot_manifest.json`. This snapshot preserves the original label version.
+
+From the repository root, using an activated Python 3.12 environment, run the following commands. Training is optional when using the saved artifact.
+
+```sh
+python -m pip install -r Member2/requirements.txt
+python Member2/train_models.py --data-dir Member2/data_snapshot --out-dir Member2/results_random_forest --models random_forest
+python Member2/compare_six.py
+```
+
+The original five-model results above describe the original experiments. See `results_random_forest/comparison_six.csv` for all six models. Bayesian optimisation remains a separate experiment to perform.
