@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "reference_label_points": 227577,
+  "trip_folds": 5,
+  "trips_per_training_fold": 16,
+  "unit_tests_passed": 9,
+  "handoff": {
+    "train": {
+      "rows": 1359951,
+      "point_groups": 208417,
+      "training_groups": 134528,
+      "positive_rows": 134528
+    },
+    "student_test": {
+      "rows": 130923,
+      "point_groups": 19160,
+      "training_groups": 13213,
+      "positive_rows": 13213
+    }
+  },
+  "label_status": "Approximate offline labels; no model accuracy is claimed."
+}

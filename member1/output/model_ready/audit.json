@@ -1,0 +1,21 @@
+{
+  "candidates_with_features_labels": {
+    "rows": 1490874,
+    "point_groups": 227577,
+    "eligible_groups": 147741,
+    "positive_rows": 147741
+  },
+  "train": {
+    "rows": 875231,
+    "point_groups": 134528,
+    "eligible_groups": 134528,
+    "positive_rows": 134528
+  },
+  "student_test": {
+    "rows": 84441,
+    "point_groups": 13213,
+    "eligible_groups": 13213,
+    "positive_rows": 13213
+  },
+  "status": "passed"
+}

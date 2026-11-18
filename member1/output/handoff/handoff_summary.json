@@ -1,0 +1,24 @@
+{
+  "train": {
+    "points": 208417,
+    "rows": 1359951,
+    "usable_reference_points": 135090,
+    "candidate_hits_all": 184353,
+    "candidate_hits_usable": 134528,
+    "training_groups": 134528,
+    "positive_rows": 134528,
+    "candidate_miss_rate_all_approximate_labels": 0.11546083093029835,
+    "candidate_miss_rate_usable_approximate_labels": 0.004160189503294109
+  },
+  "student_test": {
+    "points": 19160,
+    "rows": 130923,
+    "usable_reference_points": 13220,
+    "candidate_hits_all": 19071,
+    "candidate_hits_usable": 13213,
+    "training_groups": 13213,
+    "positive_rows": 13213,
+    "candidate_miss_rate_all_approximate_labels": 0.004645093945720213,
+    "candidate_miss_rate_usable_approximate_labels": 0.0005295007564296572
+  }
+}

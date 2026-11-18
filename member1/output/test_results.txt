@@ -1,0 +1,14 @@
+test_disconnected_reference_does_not_form_transition (test_alignment.AlignmentTests.test_disconnected_reference_does_not_form_transition) ... ok
+test_known_forward_route (test_alignment.AlignmentTests.test_known_forward_route) ... ok
+test_large_gap_allows_new_alignment_block (test_alignment.AlignmentTests.test_large_gap_allows_new_alignment_block) ... ok
+test_clamped_projection_and_degenerate_arc (test_candidates.GeometryTests.test_clamped_projection_and_degenerate_arc) ... ok
+test_real_trips_against_all_arc_distances (test_candidates.GeometryTests.test_real_trips_against_all_arc_distances) ... ok
+test_reverse_arcs_retained_and_fallback (test_candidates.GeometryTests.test_reverse_arcs_retained_and_fallback) ... ok
+test_backward_move_requires_directed_cycle (test_road_graph.RoadGraphTests.test_backward_move_requires_directed_cycle) ... ok
+test_parallel_edges_choose_minimum_and_direction_is_preserved (test_road_graph.RoadGraphTests.test_parallel_edges_choose_minimum_and_direction_is_preserved) ... ok
+test_zero_weight_edges_and_candidate_distances (test_road_graph.RoadGraphTests.test_zero_weight_edges_and_candidate_distances) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 1.579s
+
+OK

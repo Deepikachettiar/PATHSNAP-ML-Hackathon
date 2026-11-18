@@ -1,0 +1,916 @@
+{
+  "method": "route-only spatial shortlist plus ordered dynamic programming",
+  "approximate_labels": true,
+  "beam": 32,
+  "distance_scale_m": 20,
+  "progress_scale_m": 50,
+  "gap_reset_s": 60,
+  "allowed_backward_progress_on_same_occurrence_m": 20,
+  "spatial_limit_m": 150,
+  "usable_distance_limit_m": 50,
+  "usable_competing_arc_margin_m": 3,
+  "points": 227577,
+  "usable_labels": 148310,
+  "trips": [
+    {
+      "trip_id": "00000001",
+      "split": "train",
+      "points": 1315,
+      "usable_labels": 1101,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 12.406135735257786,
+      "reference_distance_max_m": 27.215522733776663
+    },
+    {
+      "trip_id": "00000002",
+      "split": "train",
+      "points": 7243,
+      "usable_labels": 3794,
+      "alignment_blocks": 520,
+      "route_discontinuities": 1,
+      "reference_distance_p95_m": 242.357309085126,
+      "reference_distance_max_m": 569.6577384878982
+    },
+    {
+      "trip_id": "00000003",
+      "split": "train",
+      "points": 821,
+      "usable_labels": 646,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 14.008563578081795,
+      "reference_distance_max_m": 25.79494283551303
+    },
+    {
+      "trip_id": "00000004",
+      "split": "train",
+      "points": 1064,
+      "usable_labels": 820,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 29.503818765700757,
+      "reference_distance_max_m": 44.61891180589988
+    },
+    {
+      "trip_id": "00000005",
+      "split": "train",
+      "points": 1045,
+      "usable_labels": 995,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 13.24201112559246,
+      "reference_distance_max_m": 27.04576129315304
+    },
+    {
+      "trip_id": "00000006",
+      "split": "train",
+      "points": 1450,
+      "usable_labels": 539,
+      "alignment_blocks": 4,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 13.882879996450761,
+      "reference_distance_max_m": 28.156961694640366
+    },
+    {
+      "trip_id": "00000008",
+      "split": "train",
+      "points": 3093,
+      "usable_labels": 1414,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 42.97114846968329,
+      "reference_distance_max_m": 71.3512066983255
+    },
+    {
+      "trip_id": "00000010",
+      "split": "train",
+      "points": 2711,
+      "usable_labels": 1461,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 17.3156266226463,
+      "reference_distance_max_m": 37.796165201399184
+    },
+    {
+      "trip_id": "00000011",
+      "split": "train",
+      "points": 2828,
+      "usable_labels": 1,
+      "alignment_blocks": 2,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 14.55038848829224,
+      "reference_distance_max_m": 32.1469354096203
+    },
+    {
+      "trip_id": "00000012",
+      "split": "train",
+      "points": 1608,
+      "usable_labels": 1502,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 15.790987764677219,
+      "reference_distance_max_m": 30.5392875829968
+    },
+    {
+      "trip_id": "00000013",
+      "split": "train",
+      "points": 2580,
+      "usable_labels": 2195,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 12.062205407617244,
+      "reference_distance_max_m": 22.02425864754168
+    },
+    {
+      "trip_id": "00000014",
+      "split": "train",
+      "points": 448,
+      "usable_labels": 280,
+      "alignment_blocks": 2,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 13.68929933418826,
+      "reference_distance_max_m": 44.138221280627526
+    },
+    {
+      "trip_id": "00000016",
+      "split": "train",
+      "points": 1305,
+      "usable_labels": 796,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 28.30702487876452,
+      "reference_distance_max_m": 44.33143827854592
+    },
+    {
+      "trip_id": "00000018",
+      "split": "train",
+      "points": 379,
+      "usable_labels": 251,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 11.988813003259462,
+      "reference_distance_max_m": 30.380214205396406
+    },
+    {
+      "trip_id": "00000019",
+      "split": "train",
+      "points": 2354,
+      "usable_labels": 1797,
+      "alignment_blocks": 16,
+      "route_discontinuities": 3,
+      "reference_distance_p95_m": 15.38403605625672,
+      "reference_distance_max_m": 295.79259754381167
+    },
+    {
+      "trip_id": "00000020",
+      "split": "train",
+      "points": 2353,
+      "usable_labels": 2071,
+      "alignment_blocks": 8,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 23.982294740322068,
+      "reference_distance_max_m": 159.25002973371028
+    },
+    {
+      "trip_id": "00000021",
+      "split": "train",
+      "points": 15783,
+      "usable_labels": 14434,
+      "alignment_blocks": 10,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 18.796624761786703,
+      "reference_distance_max_m": 136.52980231269694
+    },
+    {
+      "trip_id": "00000022",
+      "split": "train",
+      "points": 474,
+      "usable_labels": 200,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 14.275622819489069,
+      "reference_distance_max_m": 21.13140686133352
+    },
+    {
+      "trip_id": "00000024",
+      "split": "train",
+      "points": 801,
+      "usable_labels": 680,
+      "alignment_blocks": 3,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 12.179414202001361,
+      "reference_distance_max_m": 28.144480091270015
+    },
+    {
+      "trip_id": "00000025",
+      "split": "train",
+      "points": 1179,
+      "usable_labels": 986,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 13.746235611668139,
+      "reference_distance_max_m": 39.849731557564404
+    },
+    {
+      "trip_id": "00000026",
+      "split": "train",
+      "points": 361,
+      "usable_labels": 103,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 14.457133566672024,
+      "reference_distance_max_m": 26.102144303004717
+    },
+    {
+      "trip_id": "00000027",
+      "split": "train",
+      "points": 694,
+      "usable_labels": 514,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 14.26337247870741,
+      "reference_distance_max_m": 24.332895390505954
+    },
+    {
+      "trip_id": "00000028",
+      "split": "train",
+      "points": 3565,
+      "usable_labels": 3082,
+      "alignment_blocks": 10,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 20.095011431563556,
+      "reference_distance_max_m": 194.10555320450553
+    },
+    {
+      "trip_id": "00000029",
+      "split": "train",
+      "points": 733,
+      "usable_labels": 546,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 14.03288841913693,
+      "reference_distance_max_m": 24.813430624286998
+    },
+    {
+      "trip_id": "00000031",
+      "split": "train",
+      "points": 4245,
+      "usable_labels": 3678,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 13.002985326215539,
+      "reference_distance_max_m": 47.40844001421712
+    },
+    {
+      "trip_id": "00000032",
+      "split": "train",
+      "points": 2464,
+      "usable_labels": 2092,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 14.955705663573204,
+      "reference_distance_max_m": 35.75520293468152
+    },
+    {
+      "trip_id": "00000033",
+      "split": "train",
+      "points": 5844,
+      "usable_labels": 1464,
+      "alignment_blocks": 28,
+      "route_discontinuities": 1,
+      "reference_distance_p95_m": 142.05864913896158,
+      "reference_distance_max_m": 160.46149653785884
+    },
+    {
+      "trip_id": "00000034",
+      "split": "train",
+      "points": 3614,
+      "usable_labels": 2841,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 19.836120334215543,
+      "reference_distance_max_m": 51.72461682263739
+    },
+    {
+      "trip_id": "00000035",
+      "split": "train",
+      "points": 1643,
+      "usable_labels": 1020,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 12.300048054175738,
+      "reference_distance_max_m": 24.524729491150243
+    },
+    {
+      "trip_id": "00000036",
+      "split": "train",
+      "points": 1368,
+      "usable_labels": 1086,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 14.154599007841654,
+      "reference_distance_max_m": 99.1219618682509
+    },
+    {
+      "trip_id": "00000037",
+      "split": "train",
+      "points": 677,
+      "usable_labels": 501,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 10.34546558313935,
+      "reference_distance_max_m": 20.982734328858314
+    },
+    {
+      "trip_id": "00000038",
+      "split": "train",
+      "points": 1287,
+      "usable_labels": 956,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 14.993516918134542,
+      "reference_distance_max_m": 33.299587265043385
+    },
+    {
+      "trip_id": "00000039",
+      "split": "train",
+      "points": 363,
+      "usable_labels": 203,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 11.890885004043861,
+      "reference_distance_max_m": 21.386308317418933
+    },
+    {
+      "trip_id": "00000041",
+      "split": "train",
+      "points": 1019,
+      "usable_labels": 683,
+      "alignment_blocks": 3,
+      "route_discontinuities": 1,
+      "reference_distance_p95_m": 13.717075278843682,
+      "reference_distance_max_m": 143.38978350446123
+    },
+    {
+      "trip_id": "00000042",
+      "split": "train",
+      "points": 7739,
+      "usable_labels": 5570,
+      "alignment_blocks": 19,
+      "route_discontinuities": 1,
+      "reference_distance_p95_m": 11.351330481569432,
+      "reference_distance_max_m": 140.94677156304064
+    },
+    {
+      "trip_id": "00000043",
+      "split": "train",
+      "points": 2322,
+      "usable_labels": 1738,
+      "alignment_blocks": 40,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 70.22128250585227,
+      "reference_distance_max_m": 193.57349703654705
+    },
+    {
+      "trip_id": "00000044",
+      "split": "train",
+      "points": 546,
+      "usable_labels": 408,
+      "alignment_blocks": 2,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 13.993888918074873,
+      "reference_distance_max_m": 25.74106030621341
+    },
+    {
+      "trip_id": "00000045",
+      "split": "train",
+      "points": 640,
+      "usable_labels": 500,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 16.936157002102426,
+      "reference_distance_max_m": 33.97260517532794
+    },
+    {
+      "trip_id": "00000046",
+      "split": "train",
+      "points": 1401,
+      "usable_labels": 1061,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 28.243417176806588,
+      "reference_distance_max_m": 137.4893685417646
+    },
+    {
+      "trip_id": "00000047",
+      "split": "train",
+      "points": 1272,
+      "usable_labels": 1003,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 13.372812428575727,
+      "reference_distance_max_m": 29.440323118955405
+    },
+    {
+      "trip_id": "00000048",
+      "split": "train",
+      "points": 1240,
+      "usable_labels": 774,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 19.608710153901946,
+      "reference_distance_max_m": 47.46392274147974
+    },
+    {
+      "trip_id": "00000050",
+      "split": "train",
+      "points": 518,
+      "usable_labels": 399,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 14.562943218050783,
+      "reference_distance_max_m": 23.540392679006594
+    },
+    {
+      "trip_id": "00000051",
+      "split": "train",
+      "points": 984,
+      "usable_labels": 631,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 14.90227827338498,
+      "reference_distance_max_m": 37.45817372931442
+    },
+    {
+      "trip_id": "00000053",
+      "split": "train",
+      "points": 1304,
+      "usable_labels": 899,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 13.149843473369314,
+      "reference_distance_max_m": 37.59721631796837
+    },
+    {
+      "trip_id": "00000054",
+      "split": "train",
+      "points": 19313,
+      "usable_labels": 1434,
+      "alignment_blocks": 8440,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 210.05089061024515,
+      "reference_distance_max_m": 241.2599962178481
+    },
+    {
+      "trip_id": "00000055",
+      "split": "train",
+      "points": 2472,
+      "usable_labels": 2257,
+      "alignment_blocks": 2,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 11.403336655387784,
+      "reference_distance_max_m": 50.556443419935185
+    },
+    {
+      "trip_id": "00000057",
+      "split": "train",
+      "points": 1645,
+      "usable_labels": 1295,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 16.902802673513072,
+      "reference_distance_max_m": 89.80105059463672
+    },
+    {
+      "trip_id": "00000058",
+      "split": "train",
+      "points": 599,
+      "usable_labels": 319,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 12.672813749502975,
+      "reference_distance_max_m": 24.17389545200437
+    },
+    {
+      "trip_id": "00000060",
+      "split": "train",
+      "points": 854,
+      "usable_labels": 417,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 18.289968462650908,
+      "reference_distance_max_m": 29.57331628630926
+    },
+    {
+      "trip_id": "00000061",
+      "split": "train",
+      "points": 1430,
+      "usable_labels": 459,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 25.584077788438638,
+      "reference_distance_max_m": 90.46200550452201
+    },
+    {
+      "trip_id": "00000062",
+      "split": "train",
+      "points": 3378,
+      "usable_labels": 2665,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 14.340791604645284,
+      "reference_distance_max_m": 27.251709899112388
+    },
+    {
+      "trip_id": "00000063",
+      "split": "train",
+      "points": 2781,
+      "usable_labels": 1578,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 21.63861554162768,
+      "reference_distance_max_m": 46.915454595891205
+    },
+    {
+      "trip_id": "00000064",
+      "split": "train",
+      "points": 2093,
+      "usable_labels": 1573,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 15.042449719423272,
+      "reference_distance_max_m": 40.28745829953023
+    },
+    {
+      "trip_id": "00000066",
+      "split": "train",
+      "points": 4325,
+      "usable_labels": 3695,
+      "alignment_blocks": 9,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 54.37399608662669,
+      "reference_distance_max_m": 148.9724270034081
+    },
+    {
+      "trip_id": "00000068",
+      "split": "train",
+      "points": 747,
+      "usable_labels": 495,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 13.735930251294072,
+      "reference_distance_max_m": 45.45596150847353
+    },
+    {
+      "trip_id": "00000069",
+      "split": "train",
+      "points": 2067,
+      "usable_labels": 1289,
+      "alignment_blocks": 3,
+      "route_discontinuities": 1,
+      "reference_distance_p95_m": 13.79493638038236,
+      "reference_distance_max_m": 37.04469044837211
+    },
+    {
+      "trip_id": "00000070",
+      "split": "train",
+      "points": 2076,
+      "usable_labels": 1578,
+      "alignment_blocks": 2,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 13.671187597193006,
+      "reference_distance_max_m": 36.72333911180735
+    },
+    {
+      "trip_id": "00000071",
+      "split": "train",
+      "points": 850,
+      "usable_labels": 689,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 11.289028716946829,
+      "reference_distance_max_m": 33.39826344454667
+    },
+    {
+      "trip_id": "00000072",
+      "split": "train",
+      "points": 969,
+      "usable_labels": 549,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 13.965603801585576,
+      "reference_distance_max_m": 37.60796960309712
+    },
+    {
+      "trip_id": "00000074",
+      "split": "train",
+      "points": 1929,
+      "usable_labels": 1631,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 14.601880993612768,
+      "reference_distance_max_m": 37.70393086590156
+    },
+    {
+      "trip_id": "00000075",
+      "split": "train",
+      "points": 1628,
+      "usable_labels": 862,
+      "alignment_blocks": 3,
+      "route_discontinuities": 2,
+      "reference_distance_p95_m": 43.599387210749235,
+      "reference_distance_max_m": 147.95826467061403
+    },
+    {
+      "trip_id": "00000078",
+      "split": "train",
+      "points": 2909,
+      "usable_labels": 1910,
+      "alignment_blocks": 2,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 15.85171809686753,
+      "reference_distance_max_m": 59.92674850181487
+    },
+    {
+      "trip_id": "00000079",
+      "split": "train",
+      "points": 689,
+      "usable_labels": 527,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 13.67665425398695,
+      "reference_distance_max_m": 25.849666288912275
+    },
+    {
+      "trip_id": "00000080",
+      "split": "train",
+      "points": 2510,
+      "usable_labels": 2018,
+      "alignment_blocks": 2,
+      "route_discontinuities": 1,
+      "reference_distance_p95_m": 31.44832204161809,
+      "reference_distance_max_m": 149.57866999009497
+    },
+    {
+      "trip_id": "00000081",
+      "split": "train",
+      "points": 3224,
+      "usable_labels": 981,
+      "alignment_blocks": 17,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 43.47886518706511,
+      "reference_distance_max_m": 148.7071993875912
+    },
+    {
+      "trip_id": "00000082",
+      "split": "train",
+      "points": 4268,
+      "usable_labels": 3706,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 14.287130903317955,
+      "reference_distance_max_m": 55.3259014417519
+    },
+    {
+      "trip_id": "00000083",
+      "split": "train",
+      "points": 1507,
+      "usable_labels": 1178,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 18.438496773164346,
+      "reference_distance_max_m": 29.351312110367108
+    },
+    {
+      "trip_id": "00000084",
+      "split": "train",
+      "points": 16031,
+      "usable_labels": 11926,
+      "alignment_blocks": 5,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 38.877420967411254,
+      "reference_distance_max_m": 149.09194230988058
+    },
+    {
+      "trip_id": "00000085",
+      "split": "train",
+      "points": 1092,
+      "usable_labels": 731,
+      "alignment_blocks": 2,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 16.07802712260518,
+      "reference_distance_max_m": 115.10315752526975
+    },
+    {
+      "trip_id": "00000086",
+      "split": "train",
+      "points": 4143,
+      "usable_labels": 3693,
+      "alignment_blocks": 1,
+      "route_discontinuities": 1,
+      "reference_distance_p95_m": 12.463713519302448,
+      "reference_distance_max_m": 36.23819090815226
+    },
+    {
+      "trip_id": "00000088",
+      "split": "train",
+      "points": 876,
+      "usable_labels": 567,
+      "alignment_blocks": 3,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 12.219739671361632,
+      "reference_distance_max_m": 28.338078175315847
+    },
+    {
+      "trip_id": "00000089",
+      "split": "train",
+      "points": 1228,
+      "usable_labels": 684,
+      "alignment_blocks": 6,
+      "route_discontinuities": 1,
+      "reference_distance_p95_m": 30.627905542532158,
+      "reference_distance_max_m": 149.6185888576011
+    },
+    {
+      "trip_id": "00000090",
+      "split": "train",
+      "points": 536,
+      "usable_labels": 275,
+      "alignment_blocks": 2,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 12.770343505195948,
+      "reference_distance_max_m": 23.776274283158052
+    },
+    {
+      "trip_id": "00000092",
+      "split": "train",
+      "points": 7892,
+      "usable_labels": 5183,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 13.082077980030624,
+      "reference_distance_max_m": 79.95834006331371
+    },
+    {
+      "trip_id": "00000093",
+      "split": "train",
+      "points": 1211,
+      "usable_labels": 780,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 24.914148095790082,
+      "reference_distance_max_m": 65.80457681014862
+    },
+    {
+      "trip_id": "00000095",
+      "split": "train",
+      "points": 1551,
+      "usable_labels": 594,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 12.501934028653157,
+      "reference_distance_max_m": 25.683817900865538
+    },
+    {
+      "trip_id": "00000096",
+      "split": "train",
+      "points": 3271,
+      "usable_labels": 2355,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 20.280880434955638,
+      "reference_distance_max_m": 109.24201670621763
+    },
+    {
+      "trip_id": "00000097",
+      "split": "train",
+      "points": 1740,
+      "usable_labels": 1438,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 10.784265028998497,
+      "reference_distance_max_m": 22.286312488075826
+    },
+    {
+      "trip_id": "00000098",
+      "split": "train",
+      "points": 5584,
+      "usable_labels": 4752,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 16.108867331352105,
+      "reference_distance_max_m": 97.53263826543834
+    },
+    {
+      "trip_id": "00000099",
+      "split": "train",
+      "points": 2322,
+      "usable_labels": 1292,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 22.18469606587044,
+      "reference_distance_max_m": 107.47077678991396
+    },
+    {
+      "trip_id": "00000000",
+      "split": "student_test",
+      "points": 2503,
+      "usable_labels": 2297,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 16.667907608067004,
+      "reference_distance_max_m": 35.99857670763223
+    },
+    {
+      "trip_id": "00000007",
+      "split": "student_test",
+      "points": 1354,
+      "usable_labels": 1241,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 29.136487962448076,
+      "reference_distance_max_m": 74.55173140620563
+    },
+    {
+      "trip_id": "00000009",
+      "split": "student_test",
+      "points": 1049,
+      "usable_labels": 597,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 18.16312013159906,
+      "reference_distance_max_m": 47.341972249288574
+    },
+    {
+      "trip_id": "00000040",
+      "split": "student_test",
+      "points": 2995,
+      "usable_labels": 2605,
+      "alignment_blocks": 2,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 14.928488238663991,
+      "reference_distance_max_m": 43.64586868886604
+    },
+    {
+      "trip_id": "00000052",
+      "split": "student_test",
+      "points": 262,
+      "usable_labels": 200,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 12.686866590802563,
+      "reference_distance_max_m": 19.120841994620772
+    },
+    {
+      "trip_id": "00000056",
+      "split": "student_test",
+      "points": 3958,
+      "usable_labels": 1999,
+      "alignment_blocks": 2,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 14.520830275155893,
+      "reference_distance_max_m": 140.58585012295424
+    },
+    {
+      "trip_id": "00000065",
+      "split": "student_test",
+      "points": 768,
+      "usable_labels": 420,
+      "alignment_blocks": 2,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 11.906366953862783,
+      "reference_distance_max_m": 21.803679783450622
+    },
+    {
+      "trip_id": "00000076",
+      "split": "student_test",
+      "points": 1486,
+      "usable_labels": 919,
+      "alignment_blocks": 2,
+      "route_discontinuities": 1,
+      "reference_distance_p95_m": 19.616842580613547,
+      "reference_distance_max_m": 149.50519387817099
+    },
+    {
+      "trip_id": "00000077",
+      "split": "student_test",
+      "points": 3911,
+      "usable_labels": 2314,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 18.88042617883631,
+      "reference_distance_max_m": 61.30995703530127
+    },
+    {
+      "trip_id": "00000091",
+      "split": "student_test",
+      "points": 874,
+      "usable_labels": 628,
+      "alignment_blocks": 1,
+      "route_discontinuities": 0,
+      "reference_distance_p95_m": 12.518261955313484,
+      "reference_distance_max_m": 22.906498469878755
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+*.tmp
+.env
+.env.*
+Student folder (2)/
+PathSnap_student_materials/
+output/maps/
+archive.zip

@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "trips": 90,
+  "candidate_rows": 1490874,
+  "gps_points": 227577,
+  "outside_radius_points": 1413,
+  "max_distance_rounding_error_m": 4.999996292553988e-07,
+  "max_projected_coordinate_rounding_error_m": 5.00120222568512e-07,
+  "max_lonlat_roundtrip_error_deg": 5.082370080344845e-10,
+  "geometry_unit_tests_passed": 3,
+  "note": "All exported rows checked; index retrieval checked separately against exhaustive geometry on 20 real points."
+}

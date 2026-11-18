@@ -1,0 +1,12 @@
+{
+  "train": {
+    "all_rows": 1359951,
+    "model_rows": 875231,
+    "positive_rows": 134528
+  },
+  "student_test": {
+    "all_rows": 130923,
+    "model_rows": 84441,
+    "positive_rows": 13213
+  }
+}

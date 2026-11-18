@@ -1,0 +1,16 @@
+column,missing_count,rows,missing_fraction
+trip_id,0,1490874,0.0
+point_index,0,1490874,0.0
+arc_id,0,1490874,0.0
+arc_length_m,0,1490874,0.0
+arc_fraction,0,1490874,0.0
+distance_from_arc_start_m,0,1490874,0.0
+distance_to_arc_end_m,0,1490874,0.0
+arc_bearing_deg,0,1490874,0.0
+gps_heading_deg,10284,1490874,0.0068979672326434024
+heading_difference_deg,10284,1490874,0.0068979672326434024
+dt_s,685,1490874,0.0004594620336795732
+gps_step_m,685,1490874,0.0004594620336795732
+gps_speed_m_s,685,1490874,0.0004594620336795732
+from_out_degree,0,1490874,0.0
+to_in_degree,0,1490874,0.0
