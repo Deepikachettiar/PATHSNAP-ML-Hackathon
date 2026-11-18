@@ -78,12 +78,13 @@ def predict(req: PredictRequest):
     root = cfg["data_root"]
     valid = list_trip_ids(root)
     if req.trip_id not in valid:                      # whitelist: blocks arbitrary paths
-        raise HTTPException(404, f"Unknown trip_id '{req.trip_id}'. Call GET /trips for valid IDs.")
+        raise HTTPException(404, "Unknown trip_id. Call GET /trips for valid IDs.")
+    trip_id = valid[valid.index(req.trip_id)]         # server-side value, not client input
     status, result = "ok", None
     t0 = time.perf_counter()
     try:
-        result = predictor.predict(root, req.trip_id)           # no reference data touched
-        result["metrics"] = score_trip(root, req.trip_id, result)  # after predictions are final
+        result = predictor.predict(root, trip_id)           # no reference data touched
+        result["metrics"] = score_trip(root, trip_id, result)  # after predictions are final
         result["runtime_ms"] = round((time.perf_counter() - t0) * 1000, 1)
         return result
     except HTTPException:
@@ -91,10 +92,10 @@ def predict(req: PredictRequest):
     except Exception as e:
         status = f"error: {type(e).__name__}"
         log.exception("predict failed")
-        raise HTTPException(500, f"Prediction failed for trip {req.trip_id}: {e}")
+        raise HTTPException(500, f"Prediction failed for trip {trip_id}.")
     finally:
         m = (result or {}).get("metrics") or {}
-        rec = {"ts": time.strftime("%Y-%m-%dT%H:%M:%S"), "trip_id": req.trip_id,
+        rec = {"ts": time.strftime("%Y-%m-%dT%H:%M:%S"), "trip_id": trip_id,
                "model_version": cfg["model_version"], "mode": cfg["mode"], "status": status,
                "ms": round((time.perf_counter() - t0) * 1000, 1),
                "points": (result or {}).get("point_count"), "eligible": m.get("eligible_points")}
@@ -108,10 +109,11 @@ def replay(req: ReplayRequest):
     """Wired to Member 3's decoder.replay when available."""
     valid = list_trip_ids(STATE["cfg"]["data_root"])
     if req.trip_id not in valid:
-        raise HTTPException(404, f"Unknown trip_id '{req.trip_id}'.")
+        raise HTTPException(404, "Unknown trip_id.")
+    trip_id = valid[valid.index(req.trip_id)]         # server-side value, not client input
     try:
         from decoder.replay import replay as run_replay      # Member 3
     except ImportError:
         raise HTTPException(501, "Replay is not available yet (decoder.replay not found).")
     # TODO(adapt): pass the loaded trip/graph exactly as Member 3's signature expects.
-    return run_replay(req.trip_id, req.anchor_point_index)
+    return run_replay(trip_id, req.anchor_point_index)

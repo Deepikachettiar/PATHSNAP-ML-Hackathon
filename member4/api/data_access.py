@@ -5,6 +5,7 @@ SEPARATION RULE (guide p.8-9): the prediction path may only call `load_inputs`
 (.track, .nodes, .arcs). Only api/evaluator.py may call `load_reference` (.route).
 Trip IDs are always strings so leading zeros survive.
 """
+import re
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -13,9 +14,18 @@ R_EARTH = 6371008.8
 _INPUT_EXT = ("track", "nodes", "arcs")
 
 
+_TRIP_ID_RE = re.compile(r"[0-9A-Za-z_-]{1,64}")
+
+
 def _trip_dir(root: str, trip_id: str) -> Path:
-    # trip_id must already be validated against list_trip_ids(); never build paths from raw client input.
-    return Path(root) / trip_id
+    """Resolve a trip folder; rejects anything that is not a plain trip ID inside root."""
+    if not _TRIP_ID_RE.fullmatch(trip_id):
+        raise ValueError("Invalid trip_id")
+    base = Path(root).resolve()
+    d = (base / trip_id).resolve()
+    if d.parent != base:
+        raise ValueError("Invalid trip_id")
+    return d
 
 
 def list_trip_ids(root: str) -> list[str]:
