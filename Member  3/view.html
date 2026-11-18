@@ -1,0 +1,33 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PathSnap | Route reconstruction</title>
+<style>*{box-sizing:border-box}body{font:16px/1.5 system-ui;color:#18354a;background:#f6f8fa;max-width:1100px;margin:auto;padding:24px}h1,h2{line-height:1.15}h1{margin:8px 0}section,article{background:white;padding:20px;border:1px solid #ced9dc;border-radius:10px;margin:16px 0}canvas{display:block;width:100%;background:#f2f6f6}#panels{display:grid;grid-template-columns:1fr 2fr;gap:16px}input{width:100%}output{display:block;font-weight:650;margin-top:12px}small{color:#445d68}@media(max-width:700px){#panels{display:block}}</style>
+<h1>PathSnap route reconstruction</h1><p>Student-test trips · Extra Trees emissions and directed-road Viterbi decoding</p>
+<label>Trip <select id="trips"></select></label>
+<div id="panels"><article><h2>Reconstructed drive</h2><canvas id="overview" width="380" height="340"></canvas><small>Teal shows the decoded route. The orange ring locates the replay.</small></article>
+<article><h2>Earlier road choice</h2><canvas id="detail" width="700" height="360"></canvas><small>Grey arrows show candidate road directions. Green highlights the selected segment. Blue dots are individual GPS readings. The orange ring marks the earlier matched position.</small>
+<output id="info"></output><label>Evidence through observation <input id="slider" type="range" min="0" step="1"></label><span id="decision"></span></article></div>
+<script>
+let route;slider.oninput=draw;
+function panel(canvas,points,minSpan){
+ const c=canvas.getContext('2d'),w=canvas.width,h=canvas.height;
+ c.clearRect(0,0,w,h);const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
+ const left=Math.min(...xs),right=Math.max(...xs),bottom=Math.min(...ys),top=Math.max(...ys);
+ const xm=(left+right)/2,ym=(top+bottom)/2,k=111195*Math.cos(ym*Math.PI/180);
+ const scale=Math.min((w-44)/Math.max(minSpan,(right-left)*k),(h-44)/Math.max(minSpan,(top-bottom)*111195));
+ const xy=p=>[w/2+(p[0]-xm)*k*scale,h/2-(p[1]-ym)*111195*scale];
+ function line(ps,color,width){c.beginPath();ps.forEach((p,i)=>i?c.lineTo(...xy(p)):c.moveTo(...xy(p)));c.lineWidth=width;c.strokeStyle=color;c.stroke()}
+ function dot(p,color,r,ring=false){c.beginPath();c.arc(...xy(p),r,0,Math.PI*2);c.fillStyle=c.strokeStyle=color;c.lineWidth=3;ring?c.stroke():c.fill()}
+ function road(ps,color,width){line(ps,color,width);const [a,b]=ps.map(xy),x=(a[0]+b[0])/2,y=(a[1]+b[1])/2,angle=Math.atan2(b[1]-a[1],b[0]-a[0]);c.save();c.translate(x,y);c.rotate(angle);c.fillStyle=color;c.beginPath();c.moveTo(8,0);c.lineTo(-5,-5);c.lineTo(-5,5);c.fill();c.restore()}
+ return {line,dot,road}
+}
+function draw(){
+ const frames=route.replay,i=Number(slider.value),f=frames[i],roads=route.anchor_roads;
+ const full=panel(overview,route.lines.flat(),50);route.lines.forEach(l=>full.line(l,'#14766b',2));
+ if(!f){info.textContent='No qualifying replay window';decision.textContent='';detail.getContext('2d').clearRect(0,0,700,360);return}
+ full.dot(f.lonlat,'#bf531a',6,true);
+ const local=panel(detail,[...Object.values(roads).flat(),...frames.map(x=>x.gps)],55);
+ Object.values(roads).forEach(l=>local.road(l,'#a7b7bb',2));local.road(roads[f.anchor_arc],'#008164',5);
+ frames.slice(0,i+1).forEach(x=>local.dot(x.gps,'#4e7cb4',3));local.dot(f.gps,'#174b91',6);local.dot(f.lonlat,'#c15d1a',9,true);
+ info.textContent='Observation '+f.anchor+' · initial road '+frames[0].anchor_arc+' → current road '+f.anchor_arc;
+ decision.textContent='Using GPS through observation '+f.prefix_end+' · '+(i===0?'Initial decision':f.anchor_arc!==frames[i-1].anchor_arc?'Road choice changed at this step':'Road choice held at this step');
+}
+</script>
