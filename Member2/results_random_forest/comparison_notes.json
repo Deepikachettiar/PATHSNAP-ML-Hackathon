@@ -1,0 +1,8 @@
+{
+  "source_snapshot": "Member2/data_snapshot/snapshot_manifest.json",
+  "all_student_keys_verified": true,
+  "labels": "Approximate offline reference-route alignment",
+  "hyperparameters": "Random Forest parameters chosen before its evaluation; no score-matching tuning",
+  "environments": "Original five models ran on Windows; Random Forest ran locally. Timing is not directly comparable.",
+  "aggregation": "CV values are unweighted averages of the five trip-grouped folds."
+}

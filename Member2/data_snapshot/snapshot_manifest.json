@@ -1,0 +1,17 @@
+{
+  "source": "archive.zip",
+  "sha256": {
+    "trip_folds.csv": "1b64f557b96b4368fabd94e0367cacdd06d3b1dc612e50c5da75d336ce2aa180",
+    "feature_schema.json": "6f261a0d9b8ae8e2fb933e8614120c9559294a780e7cc4030d94d2a0938e2fee",
+    "train_candidates.csv.gz": "3a664c2caa2b68f47f58ae856e1cca9c48609b5518d288c259a7e0e9e6676a9a",
+    "student_test_candidates.csv.gz": "0552a9dcd9f748be842d4f310442e816214f01c1c3141fa9427ebf516a8c8865"
+  },
+  "verified_fold_point_counts": [
+    32663,
+    31803,
+    27055,
+    22745,
+    18544
+  ],
+  "student_score_keys_match": true
+}

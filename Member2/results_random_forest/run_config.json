@@ -1,0 +1,48 @@
+{
+  "seed": 42,
+  "subsample": 1.0,
+  "selection_rule": "Rank by grouped-CV observation Top-1 (higher is better); break ties with grouped-CV macro F1, then with lower student-test inference time.",
+  "features": [
+    "distance_m",
+    "candidate_rank",
+    "outside_radius",
+    "arc_length_m",
+    "arc_fraction",
+    "distance_from_arc_start_m",
+    "distance_to_arc_end_m",
+    "arc_bearing_deg",
+    "gps_heading_deg",
+    "heading_difference_deg",
+    "dt_s",
+    "gps_step_m",
+    "gps_speed_m_s",
+    "from_out_degree",
+    "to_in_degree"
+  ],
+  "fit_filter": "training_group_usable == 1",
+  "label_status": "approximate reference-route alignment; not independently verified point labels",
+  "threshold": 0.5,
+  "prob_floor": 1e-06,
+  "versions": {
+    "python": "3.12.14",
+    "sklearn": "1.9.1",
+    "pandas": "2.2.3",
+    "numpy": "2.3.5"
+  },
+  "machine": {
+    "platform": "Linux-7.3.4-1-cachyos-x86_64-with-glibc2.44",
+    "processor": ""
+  },
+  "models": {
+    "random_forest": {
+      "family": "Bagged tree ensemble",
+      "config": {
+        "n_estimators": 100,
+        "max_depth": 16,
+        "min_samples_leaf": 20,
+        "max_features": "sqrt",
+        "bootstrap": true
+      }
+    }
+  }
+}
