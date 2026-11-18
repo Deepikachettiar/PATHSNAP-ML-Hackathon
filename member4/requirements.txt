@@ -1,0 +1,13 @@
+# Pin to the exact versions you install (run `pip freeze | grep -i -E "fastapi|uvicorn|streamlit|folium|numpy|scipy|pandas|requests|pyyaml|pydantic"` and paste here).
+# Same file is used on BOTH laptops.
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.6
+numpy>=1.26
+scipy>=1.11
+pandas>=2.1
+pyyaml>=6.0
+requests>=2.31
+streamlit>=1.33
+folium>=0.16
+streamlit-folium>=0.20

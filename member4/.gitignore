@@ -1,0 +1,19 @@
+# raw data (never push)
+data/
+*.zip
+*.track
+*.nodes
+*.arcs
+*.route
+# env / secrets / caches
+.venv/
+venv/
+.env
+*.key
+__pycache__/
+*.pyc
+.cache/
+.ipynb_checkpoints/
+# runtime logs (keep the folder, not the files you generate while testing)
+logs/*.log
+logs/*.jsonl

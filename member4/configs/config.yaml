@@ -1,0 +1,24 @@
+# Edit this file, or override with environment variables (shown in comments).
+mode: dev                  # dev | final            (env: PATHSNAP_MODE)
+model_version: "scaffold-0"  # replace with Member 2's model version string
+engine: auto               # auto | scaffold | real (env: PATHSNAP_ENGINE)
+                           # auto = use the team's real modules if importable, else scaffold
+
+data_roots:
+  # Folder containing one sub-folder per trip: <root>/<trip_id>/<trip_id>.{track,nodes,arcs,route}
+  dev:   "/Users/manishrangach_2007/Downloads/Student folder/student_test"     # env: PATHSNAP_DEV_ROOT
+  final: ""                                     # env: PATHSNAP_FINAL_ROOT  (set at the event)
+
+server:
+  host: "0.0.0.0"
+  port: 8000
+
+scaffold:                  # only used by the scaffold engine
+  radius_m: 60.0           # max point-to-road distance to accept a match
+  knn_arcs: 12             # nearest arc midpoints examined per GPS point
+  break_gap_m: 400.0       # start a new route segment if matched points are further apart
+  break_gap_s: 120.0       # ... or further apart in time
+
+road_context:
+  radius_m: 120.0          # draw roads within this distance of any GPS point
+  max_arcs: 6000
