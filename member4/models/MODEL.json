@@ -1,0 +1,7 @@
+{
+  "classifier": "extra_trees",
+  "source": "Member2/results_zip/models/extra_trees.joblib",
+  "sha256": "789e5f7757264bce5f68afe561c0272b1974882a476ebf2fc5db4c78e1d20ff1",
+  "selection": "highest mean grouped-CV Top-1 among saved original experiments",
+  "features": 15
+}

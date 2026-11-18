@@ -56,6 +56,7 @@ if st.button("Run", type="primary"):
         st.session_state.pop("result", None)
     else:
         st.session_state["result"] = res
+        st.session_state.pop("replay", None)
 
 res = st.session_state.get("result")
 if not res:
@@ -69,17 +70,20 @@ c[0].metric("Trip", res["trip_id"])
 c[1].metric("Points", res["point_count"])
 c[2].metric("Eligible", m.get("eligible_points", "n/a"))
 hit = m.get("route_arc_hit_rate")
-c[3].metric("Route-arc hit rate" if "scaffold" in m.get("convention", "") else "Score", f"{hit:.3f}" if hit is not None else "n/a")
+c[3].metric("Route-arc hit rate", f"{hit:.3f}" if hit is not None else "n/a")
 c[4].metric("Runtime (ms)", res["runtime_ms"])
 st.caption(f"model {res['model_version']} | engine {res['engine']} | convention: {m.get('convention', 'n/a')} | "
            f"breaks: {len(res['breaks'])}")
 
 # ---- map (API gives [lon, lat]; Folium wants [lat, lon])
 pts = [p for p in res["points"] if p["lat"] is not None and p["lon"] is not None]
+if not pts:
+    st.warning("This trip has no valid GPS coordinates to display.")
+    st.stop()
 ll = lambda lon, lat: [lat, lon]
 lats = [p["lat"] for p in pts]
 lons = [p["lon"] for p in pts]
-fmap = folium.Map(location=[sum(lats) / len(lats), sum(lons) / len(lons)], zoom_start=15, tiles="cartodbpositron")
+fmap = folium.Map(location=[sum(lats) / len(lats), sum(lons) / len(lons)], zoom_start=15, tiles="OpenStreetMap", prefer_canvas=True)
 fmap.fit_bounds([[min(lats), min(lons)], [max(lats), max(lons)]])
 
 g_road = folium.FeatureGroup("Road context (grey)", show=True)
@@ -103,11 +107,11 @@ for g in (g_road, g_gps, g_route, g_break):
     g.add_to(fmap)
 folium.LayerControl(collapsed=False).add_to(fmap)
 fmap.get_root().html.add_child(folium.Element(
-    '<div style="position:fixed;bottom:20px;left:20px;z-index:9999;background:white;padding:8px 10px;'
+    '<div style="position:fixed;bottom:20px;left:20px;z-index:9999;background:white;color:#111;padding:8px 10px;'
     'border:1px solid #888;font:12px sans-serif"><b>Legend</b><br>'
     '<span style="color:#1a73e8">●</span> raw GPS<br><span style="color:#d93025">━</span> decoded route<br>'
     '<span style="color:#9aa0a6">━</span> road network<br><span style="color:#f9ab00">●</span> break/unmatched</div>'))
-st_folium(fmap, height=620, use_container_width=True, returned_objects=[])
+st_folium(fmap, height=620, use_container_width=True, key=f"trip-map-{res['trip_id']}", returned_objects=[])
 
 # ---- replay (optional; needs Member 3)
 with st.expander("Replay: how later GPS changed an earlier road choice"):
@@ -121,7 +125,18 @@ with st.expander("Replay: how later GPS changed an earlier road choice"):
     if rp:
         steps = rp.get("prefixes") or rp.get("steps") or []
         if steps:
-            i = st.slider("Prefix end", 0, len(steps) - 1, len(steps) - 1)
-            st.json(steps[i])
+            i = st.slider("Replay step", 0, len(steps) - 1, len(steps) - 1) if len(steps) > 1 else 0
+            step = steps[i]
+            st.write(f"GPS through point {step['prefix_end']} selects arc {step['anchor_arc']} for earlier point {step['anchor']}.")
+            view = folium.Map(location=ll(*step["lonlat"]), zoom_start=17)
+            for arc, coords in rp.get("roads", {}).items():
+                selected = int(arc) == step["anchor_arc"]
+                folium.PolyLine([ll(*xy) for xy in coords], color="red" if selected else "grey",
+                                weight=6 if selected else 3, tooltip=f"Arc {arc}").add_to(view)
+            folium.Marker(ll(*step["lonlat"]), tooltip="Earlier matched position").add_to(view)
+            folium.CircleMarker(ll(*step["gps"]), radius=6, color="blue", tooltip="Latest GPS evidence").add_to(view)
+            st_folium(view, height=380, key=f"replay-{res['trip_id']}", returned_objects=[])
+            if not rp.get("changed"):
+                st.caption("This replay window keeps the same road choice as more observations arrive.")
         else:
             st.write(rp)

@@ -25,4 +25,6 @@ def load_config() -> dict:
                          f"Set data_roots.{cfg['mode']} in configs/config.yaml or the env variable.")
     p = Path(root)
     cfg["data_root"] = str(p if p.is_absolute() else REPO_ROOT / p)
+    model = Path(os.environ.get("PATHSNAP_MODEL", cfg.get("model_path", "models/extra_trees.joblib")))
+    cfg["model_path"] = str(model if model.is_absolute() else REPO_ROOT / model)
     return cfg

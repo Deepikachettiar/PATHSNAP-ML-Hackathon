@@ -7,6 +7,7 @@ data/
 *.route
 # env / secrets / caches
 .venv/
+.venv-*/
 venv/
 .env
 *.key

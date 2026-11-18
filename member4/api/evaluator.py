@@ -15,7 +15,7 @@ def score_trip(root: str, trip_id: str, prediction: dict) -> dict:
     try:
         ref = load_reference(root, trip_id)
     except FileNotFoundError:
-        return {"reference_available": False, "convention": "scaffold"}
+        return {"reference_available": False, "convention": "route_arc_membership"}
     ref_set = set(int(a) for a in ref)
     pts = prediction["points"]
     eligible = [p for p in pts if p["status"] == "matched"]
@@ -23,7 +23,7 @@ def score_trip(root: str, trip_id: str, prediction: dict) -> dict:
     n = len(pts)
     return {
         "reference_available": True,
-        "convention": "scaffold: route_arc_hit_rate (not Top-1)",
+        "convention": "route_arc_membership: predicted arc appears in supplied route",
         "points_total": n,
         "eligible_points": len(eligible),
         "unmatched_points": n - len(eligible),

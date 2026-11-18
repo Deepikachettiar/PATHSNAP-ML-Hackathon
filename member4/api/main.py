@@ -105,13 +105,13 @@ def predict(req: PredictRequest):
 
 @app.post("/replay")
 def replay(req: ReplayRequest):
-    """Wired to Member 3's decoder.replay when available."""
+    """Return the live decoder's prefix replay for the selected trip."""
     valid = list_trip_ids(STATE["cfg"]["data_root"])
     if req.trip_id not in valid:
         raise HTTPException(404, f"Unknown trip_id '{req.trip_id}'.")
-    try:
-        from decoder.replay import replay as run_replay      # Member 3
-    except ImportError:
-        raise HTTPException(501, "Replay is not available yet (decoder.replay not found).")
-    # TODO(adapt): pass the loaded trip/graph exactly as Member 3's signature expects.
-    return run_replay(req.trip_id, req.anchor_point_index)
+    result = STATE["predictor"].predict(STATE["cfg"]["data_root"], req.trip_id)
+    steps = result.get("replay", [])
+    if req.anchor_point_index is not None:
+        steps = [step for step in steps if step["anchor"] == req.anchor_point_index]
+    return {"trip_id": req.trip_id, "steps": steps, "roads": result.get("replay_roads", {}),
+            "changed": len({step["anchor_arc"] for step in steps}) > 1}
